@@ -1,22 +1,22 @@
-// import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-// @Entity()
-// export class GroupMessage {
-//   @PrimaryGeneratedColumn()
-//   _id: number;
+@Entity()
+export class GroupMessage {
+  @PrimaryGeneratedColumn()
+  _id: number;
 
-//   @Column()
-//   userId: string;
+  @Column()
+  userId: string;
 
-//   @Column()
-//   groupId: string;
+  @Column()
+  groupId: string;
 
-//   @Column()
-//   content: string;
+  @Column()
+  content: string;
 
-//   @Column()
-//   messageType: string;
+  @Column()
+  messageType: string;
 
-//   @Column('double')
-//   time: number;
-// }
+  @Column('double')
+  time: number;
+}

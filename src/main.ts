@@ -19,7 +19,7 @@ async function bootstrap() {
   const options = new DocumentBuilder()
     .setTitle('Nest-Chat-Formal Api')
     .setDescription('Chat-Formal Api')
-    .setVersion('1.1')
+    .setVersion('1.2')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('chat-formal-api', app, document);

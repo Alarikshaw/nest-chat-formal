@@ -20,20 +20,33 @@
 // })
 
 
-// export class AppModule implements NestModule {
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer.apply(LoggerMiddleware); 
-//   }
-// }
 
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './posts/posts.module';
 
+import { UserModule } from './modules/user/user.module';
+
 @Module({
-  imports: [PostsModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      port: 3306,
+      username: 'root',
+      password: '123456',
+      database: 'chat1',
+      charset: "utf8mb4", // 设置chatset编码为utf8mb4
+      autoLoadEntities: true,
+      synchronize: true
+    }),
+    PostsModule, UserModule
+  ],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware); 
+  }
+}

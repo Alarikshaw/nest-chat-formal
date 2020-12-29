@@ -1,33 +1,33 @@
-// import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-// @Entity()
-// export class Group {
-//     @PrimaryGeneratedColumn("uuid")
-//     groupId: string;
+@Entity()
+export class Group {
+    @PrimaryGeneratedColumn("uuid")
+    groupId: string;
 
-//     @Column()
-//     userId: string;
+    @Column()
+    userId: string;
 
-//     @Column()
-//     groupName: string;
+    @Column()
+    groupName: string;
 
-//     @Column({ default: '这是公告' })
-//     notice: string; 
+    @Column({ default: '这是公告' })
+    notice: string; 
 
-//     @Column({ type: 'double', default: new Date().valueOf() })
-//     createTime: number;
-// }
+    @Column({ type: 'double', default: new Date().valueOf() })
+    createTime: number;
+}
 
-// @Entity()
-// export class GroupMap {
-//     @PrimaryGeneratedColumn()
-//     _id: number;
+@Entity()
+export class GroupMap {
+    @PrimaryGeneratedColumn()
+    _id: number;
   
-//     @Column()
-//     groupId: string;
+    @Column()
+    groupId: string;
   
-//     @Column()
-//     userId: string;
-// }
+    @Column()
+    userId: string;
+}
 
 
