@@ -31,6 +31,8 @@ import { UserModule } from './modules/user/user.module';
 import { FriendModule } from './modules/friend/friend.module';
 import { GroupModule } from './modules/group/group.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { ChatModule } from './modules/chat/chat.module';
+
 
 @Module({
   imports: [
@@ -45,7 +47,7 @@ import { AuthModule } from './modules/auth/auth.module';
       synchronize: true
     }),
     PostsModule, UserModule, FriendModule, GroupModule,
-    AuthModule
+    AuthModule, ChatModule
   ],
 })
 
