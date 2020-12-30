@@ -30,6 +30,7 @@ import { PostsModule } from './posts/posts.module';
 import { UserModule } from './modules/user/user.module';
 import { FriendModule } from './modules/friend/friend.module';
 import { GroupModule } from './modules/group/group.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -43,7 +44,8 @@ import { GroupModule } from './modules/group/group.module';
       autoLoadEntities: true,
       synchronize: true
     }),
-    PostsModule, UserModule, FriendModule, GroupModule
+    PostsModule, UserModule, FriendModule, GroupModule,
+    AuthModule
   ],
 })
 
