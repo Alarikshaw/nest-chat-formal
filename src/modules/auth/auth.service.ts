@@ -21,6 +21,7 @@ export class AuthService {
      * @param data 
      */
     async login(data: User): Promise<any> {
+        console.error('--------------', data.password);
         const user = await this.userRepository.findOne({
             userName: data.userName,
             password: data.password
