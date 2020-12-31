@@ -7,13 +7,13 @@ import { AuthService } from "./auth.service";
 @Controller('auth')
 @ApiTags('登录')
 export class AuthController {
-    // private readonly authService: AuthService;
     constructor(private readonly authService: AuthService) {}
 
     @UseGuards(AuthGuard('local'))
     @Post('/login')
     @ApiOperation({ summary: '登录' })
     async login(@Request() req) {
+        console.error('req-----------------------------------', req);
         return this.authService.login(req.user);
     }
 

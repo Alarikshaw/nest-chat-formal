@@ -1,23 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import 'console-color-mr';
 import { logger } from './common/middleware/logger.middleware';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   /**
    * 全局过滤器
    */
-  // app.useGlobalFilters(new HttpExceptionFilter());
   app.use(logger);
   /**
    * 配置全局拦截器
    */
-  // app.useGlobalInterceptors(new TransformInterceptor());
-
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   const options = new DocumentBuilder()

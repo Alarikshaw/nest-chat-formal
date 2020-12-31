@@ -7,12 +7,14 @@ import { GroupMap } from './../group/entity/group.entity';
 import { nameVerify, passwordVerify } from './../../common/tool/utils';
 import { RCode } from './../../common/constant/rcode';
 
+@Injectable()
 export class AuthService {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>,
         @InjectRepository(GroupMap)
         private readonly groupUserRepository: Repository<GroupMap>,
+        
         private readonly jwtService: JwtService,
     ) {}
 
