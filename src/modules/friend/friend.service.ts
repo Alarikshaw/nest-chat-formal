@@ -8,12 +8,12 @@ import { RCode } from '././../../common/constant/rcode';
 @Injectable()
 export class FriendService {
 
-    @InjectRepository(UserMap)
-    private readonly friendRepository: Repository<UserMap>;
-    // constructor(
-    //     @InjectRepository(UserMap)
-    //     private readonly friendRepository: Repository<UserMap>,
-    //   ){}
+    // @InjectRepository(UserMap)
+    // private readonly friendRepository: Repository<UserMap>;
+    constructor(
+        @InjectRepository(UserMap)
+        private readonly friendRepository: Repository<UserMap>,
+    ){}
 
     // @InjectRepository(FriendMessage)
     // private readonly friendMessageRepository: Repository<FriendMessage>;

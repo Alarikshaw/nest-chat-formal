@@ -7,7 +7,8 @@ import { AuthService } from "./auth.service";
 @Controller('auth')
 @ApiTags('登录')
 export class AuthController {
-    private readonly authService: AuthService;
+    // private readonly authService: AuthService;
+    constructor(private readonly authService: AuthService) {}
 
     @UseGuards(AuthGuard('local'))
     @Post('/login')
@@ -20,6 +21,7 @@ export class AuthController {
     @Post('/register')
     @ApiOperation({ summary: '注册' })
     async register(@Request() req) {
+        console.error('req', req);
         return this.authService.register(req.user);
     }
 }

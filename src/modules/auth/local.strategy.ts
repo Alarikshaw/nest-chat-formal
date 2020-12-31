@@ -9,10 +9,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     super();
   }
 
-  async validate(username: string, password: string): Promise<any> {
-    if(!username || !password) {
+  async validate(userName: string, password: string): Promise<any> {
+    if(!userName || !password) {
       return false;
     }
-    return {username, password};
+    return {userName, password};
   }
 }

@@ -8,14 +8,13 @@ import { nameVerify, passwordVerify } from './../../common/tool/utils';
 import { RCode } from './../../common/constant/rcode';
 
 export class AuthService {
-
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>;
-
-    @InjectRepository(GroupMap)
-    private readonly groupUserRepository: Repository<GroupMap>;
-
-    private readonly jwtService: JwtService;
+    constructor(
+        @InjectRepository(User)
+        private readonly userRepository: Repository<User>,
+        @InjectRepository(GroupMap)
+        private readonly groupUserRepository: Repository<GroupMap>,
+        private readonly jwtService: JwtService,
+    ) {}
 
     /**
      * 登录
@@ -60,6 +59,7 @@ export class AuthService {
      * @param user 
      */
     async register(user: User): Promise<any> {
+        console.info('进来了吗');
         const isHave = await this.userRepository.find({
             userName: user.userName
         });
