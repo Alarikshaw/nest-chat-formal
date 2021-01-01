@@ -22,7 +22,7 @@ interface GroupDto {
   // 好友
   interface FriendDto {
     userId: string;
-    userName: string;
+    username: string;
     avatar: string;
     role?: string;
     tag?: string;

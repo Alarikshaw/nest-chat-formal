@@ -25,6 +25,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         if(!user) {
           return false;
         }
-        return { userName: payload.userName, password: payload.password };
+        return { username: payload.username, password: payload.password };
       }
 } 

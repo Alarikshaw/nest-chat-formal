@@ -11,11 +11,13 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
+    console.log('exception', exception)
     const status = exception.getStatus();
+    console.log('status', status)
     const exceptionRes: any = exception.getResponse();
     const error = exceptionRes.error;
     let message = exceptionRes.message;
-    console.error('-----------------------------status', status);
+
     if(status === 401) {
       message = '身份过期，请重新登录';
     }

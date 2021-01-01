@@ -25,7 +25,7 @@ export class AuthService {
     async login(data: User): Promise<any> {
         console.error('--------------', data.password);
         const user = await this.userRepository.findOne({
-            userName: data.userName,
+            username: data.username,
             password: data.password
         });
         if (!user) {
@@ -35,7 +35,7 @@ export class AuthService {
                 data: ''
             };
         }
-        if (!passwordVerify(data.password) || !nameVerify(data.userName)) {
+        if (!passwordVerify(data.password) || !nameVerify(data.username)) {
             return {
                 code: RCode.FAIL,
                 msg: '注册校验不通过！',
@@ -64,7 +64,7 @@ export class AuthService {
     async register(user: User): Promise<any> {
         console.info('进来了吗');
         const isHave = await this.userRepository.find({
-            userName: user.userName
+            username: user.username
         });
         if (isHave.length) {
             return {
@@ -73,7 +73,7 @@ export class AuthService {
                 data: ''
             };
         }
-        if (!passwordVerify(user.password) || !nameVerify(user.userName)) {
+        if (!passwordVerify(user.password) || !nameVerify(user.username)) {
             return {
                 code: RCode.FAIL,
                 msg: '注册校验不通过',

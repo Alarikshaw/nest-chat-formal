@@ -28,7 +28,7 @@ export class UserController {
         return userIds;
     };
 
-    @Patch('userName')
+    @Patch('username')
     @ApiOperation({ summary: '更新用户名' })
     updateUserName(@Body() user) {
         return user;
@@ -54,8 +54,8 @@ export class UserController {
 
     @Get('/findByName')
     @ApiOperation({ summary: '查找用户名' })
-    getUserByName(@Body('userName') userName: string) {
-        return userName;
+    getUserByName(@Body('username') username: string) {
+        return username;
     };
 
     @Post('/avatar')

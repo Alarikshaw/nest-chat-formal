@@ -158,7 +158,7 @@ export class NestChatFoamal {
                     'joinGroup',
                     {
                         code: RCode.OK,
-                        msg: `${user.userName}加入群${group.groupName}`,
+                        msg: `${user.username}加入群${group.groupName}`,
                         data: res
                     }
                 );
@@ -210,7 +210,7 @@ export class NestChatFoamal {
                 'joinGroupSocket',
                 {
                     code: RCode.OK, 
-                    msg:`${user.userName}加入群${group.groupName}`, 
+                    msg:`${user.username}加入群${group.groupName}`, 
                     data: res
                 }
             );
@@ -352,8 +352,8 @@ export class NestChatFoamal {
                     // @ts-ignore
                     user.messages = messages;
                 }
-                this.server.to(data.userId).emit('addFriend', { code: RCode.OK, msg: `添加好友${friend.userName}成功`, data: friend });
-                this.server.to(data.friendId).emit('addFriend', { code: RCode.OK, msg: `${user.userName}添加你为好友`, data: user });
+                this.server.to(data.userId).emit('addFriend', { code: RCode.OK, msg: `添加好友${friend.username}成功`, data: friend });
+                this.server.to(data.friendId).emit('addFriend', { code: RCode.OK, msg: `${user.username}添加你为好友`, data: user });
             }
         }
     }

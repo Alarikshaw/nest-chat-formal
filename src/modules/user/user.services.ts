@@ -103,15 +103,15 @@ export class UserService {
         userId: user.userId, 
         password: user.password
        });
-      if (oldUser && nameVerify(user.userName)) {
+      if (oldUser && nameVerify(user.username)) {
          const isHaveName = await this.userRepository.findOne({
-           userName: user.userName
+           username: user.username
          });
          if (isHaveName) {
            return { code: 1, msg: '用户名重复', data: '' };
          };
          const newUser = JSON.parse(JSON.stringify(oldUser));
-         newUser.userName = user.userName;
+         newUser.username = user.username;
          newUser.password = user.password;
          await this.userRepository.update(oldUser, newUser);
          return { msg: '更新用户名成功！', data: newUser };
@@ -131,7 +131,7 @@ export class UserService {
     try {
       const oldUser = await this.userRepository.findOne({
         userId: user.userId, 
-        userName: user.userName, 
+        username: user.username, 
         password: user.password
       });
       if (oldUser && passwordVerify(password)) {
@@ -155,7 +155,7 @@ export class UserService {
       userId: userId
     });
     const newUser = JSON.parse(JSON.stringify(user));
-    if (user.userName === 'Alarikshaw') {
+    if (user.username === 'Alarikshaw') {
       newUser.role = 'admin';
       await this.userRepository.update(user, newUser);
       return {
@@ -187,7 +187,7 @@ export class UserService {
         password: psw
       });
       if (user.role === 'admin' 
-      && user.userName === 'Alarikshaw') {
+      && user.username === 'Alarikshaw') {
         // 被删用户自己的群
         const groups = await this.groupRepository.find({
           userId: did,
@@ -234,14 +234,14 @@ export class UserService {
 
   /**
    * 查找用户
-   * @param userName 
+   * @param username 
    */
-  public async getUsersByName(userName: string): Promise<any> {
+  public async getUsersByName(username: string): Promise<any> {
     try {
-      if (userName) {
+      if (username) {
         const users = await this.userRepository.find({
           where: {
-            userName: Like(`%${userName}%`)
+            username: Like(`%${username}%`)
           }
         });
         return {
