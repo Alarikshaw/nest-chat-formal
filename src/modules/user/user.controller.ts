@@ -1,8 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UploadedFile, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 
-import {  } from '@nestjs/typeorm';
 
-import {  } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 
 import { AuthGuard } from '@nestjs/passport';
@@ -59,7 +58,9 @@ export class UserController {
 
     @Post('/avatar')
     @ApiOperation({ summary: '更新头像' })
+    @UseInterceptors(FileInterceptor('avatar'))
     setUserAvatar(@Body() user, @UploadedFile() file) {
+        console.log('user', user);
         return this.userService.setUserAvatar(user, file);
     }
 }
