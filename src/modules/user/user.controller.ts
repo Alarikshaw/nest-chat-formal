@@ -34,8 +34,8 @@ export class UserController {
     
     @Patch('passWord')
     @ApiOperation({ summary: '更新密码' })
-    updatePassword(@Body() user, @Query('passWord') passWord) {
-        return this.userService.updatePassword(user, passWord);
+    updatePassword(@Body() user, @Query('password') password) {
+        return this.userService.updatePassword(user, password);
     };
 
     @Patch('/jurisdiction/:userId')

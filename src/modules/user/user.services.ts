@@ -136,7 +136,7 @@ export class UserService {
       });
       if (oldUser && passwordVerify(password)) {
         const newUser = JSON.parse(JSON.stringify(oldUser));
-        newUser.passWord = password;
+        newUser.password = password;
         await this.userRepository.update(oldUser, newUser);
         return { msg: '更新用户密码成功！', data: newUser };
       }
