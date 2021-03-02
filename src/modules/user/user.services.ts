@@ -263,13 +263,10 @@ export class UserService {
   }
 
   public async setUserAvatar(user: User, file) {
-    console.log('user', user.userId);
-    console.log('user', user.password);
     const newUser = await this.userRepository.findOne({
       userId: user.userId,
       password: user.password,
     });
-    console.log('newUser', newUser);
     if (newUser) {
       const random = Date.now() + '&';
       const stream = createWriteStream(join('public/avatar', random + file.originalname));

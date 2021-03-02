@@ -13,7 +13,6 @@ export class AuthController {
     @Post('/login')
     @ApiOperation({ summary: '登录' })
     async login(@Request() req) {
-        console.error('req-----------------------------------', req);
         return this.authService.login(req.user);
     }
 

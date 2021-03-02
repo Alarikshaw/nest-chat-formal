@@ -60,7 +60,6 @@ export class UserController {
     @ApiOperation({ summary: '更新头像' })
     @UseInterceptors(FileInterceptor('avatar'))
     setUserAvatar(@Body() user, @UploadedFile() file) {
-        console.log('user', user);
         return this.userService.setUserAvatar(user, file);
     }
 }

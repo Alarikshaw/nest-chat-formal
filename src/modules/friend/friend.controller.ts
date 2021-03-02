@@ -7,18 +7,18 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('用户好友相关')
 @UseGuards(AuthGuard('jwt'))
 export class FriendController {
-    private readonly friendServices: FriendService;
+    constructor(private readonly friendService: FriendService) {}
 
     @Get()
     @ApiOperation({ summary: '获取用户好友' })
     getFriend(@Query('userId') userId: string) {
-        return this.friendServices.getFriends(userId);
+        return this.friendService.getFriends(userId);
     }
 
     @Get('/friendMessages')
     @ApiOperation({ summary: '获取当前用户私聊信息' })
     getFriendMessage(@Query() query: any) {
-        return this.friendServices.getFriendMessages(
+        return this.friendService.getFriendMessages(
             query.userId,
             query.friendId,
             query.current,

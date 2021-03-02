@@ -7,7 +7,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('聊天群相关接口')
 @UseGuards(AuthGuard('jwt'))
 export class GroupController {
-    private readonly groupService: GroupService;
+    constructor(private readonly groupService: GroupService) {}
 
     /**
      * 获取群信息

@@ -16,11 +16,13 @@ import { Repository } from 'typeorm';
   providers: [NestChatFoamal],
 })
 export class ChatModule {
-  @InjectRepository(Group)
-  private readonly groupRepository: Repository<Group>;
-
+  constructor(
+    @InjectRepository(Group)
+    private readonly groupRepository: Repository<Group>,
+  ){}
   async onModuleInit() {
     const defaultGroup = await this.groupRepository.find({groupName: 'Nest实时通信'});
+    console.log('asdads', !defaultGroup.length);
     if(!defaultGroup.length) {
       await this.groupRepository.save({
         groupId: 'Nest实时通信',

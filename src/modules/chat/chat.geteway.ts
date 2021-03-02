@@ -4,50 +4,47 @@ import {
     WebSocketGateway,
     WebSocketServer,
     ConnectedSocket
-  } from '@nestjs/websockets';
-  import { Server, Socket } from 'socket.io';
-  import { InjectRepository } from '@nestjs/typeorm';
-  import { Repository, getRepository } from 'typeorm';
-  import { User } from '../user/entity/user.entity';
-  import { Group, GroupMap } from '../group/entity/group.entity';
-  import { GroupMessage } from '../group/entity/groupMessage.entity';
-  import { UserMap } from '../friend/entity/friend.entity';
-  import { FriendMessage } from '../friend/entity/friendMessage.entity';
-  import { createWriteStream } from 'fs';
-  import { join } from 'path';
-  import { RCode } from 'src/common/constant/rcode';
-  import { nameVerify } from 'src/common/tool/utils';
+} from '@nestjs/websockets';
+import { Server, Socket } from 'socket.io';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, getRepository } from 'typeorm';
+import { User } from '../user/entity/user.entity';
+import { Group, GroupMap } from '../group/entity/group.entity';
+import { GroupMessage } from '../group/entity/groupMessage.entity';
+import { UserMap } from '../friend/entity/friend.entity';
+import { FriendMessage } from '../friend/entity/friendMessage.entity';
+import { createWriteStream } from 'fs';
+import { join } from 'path';
+import { RCode } from 'src/common/constant/rcode';
+import { nameVerify } from 'src/common/tool/utils';
 
 @WebSocketGateway()
 export class NestChatFoamal {
-
+  constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>;
-
+    private readonly userRepository: Repository<User>,
     @InjectRepository(Group)
-    private readonly groupRepository: Repository<Group>;
-
+    private readonly groupRepository: Repository<Group>,
     @InjectRepository(GroupMap)
-    private readonly groupUserRepository: Repository<GroupMap>;
-
+    private readonly groupUserRepository: Repository<GroupMap>,
     @InjectRepository(GroupMessage)
-    private readonly groupMessageRepository: Repository<GroupMessage>;
-
+    private readonly groupMessageRepository: Repository<GroupMessage>,
     @InjectRepository(UserMap)
-    private readonly friendRepository: Repository<UserMap>;
-
+    private readonly friendRepository: Repository<UserMap>,
     @InjectRepository(FriendMessage)
-    private readonly friendMessageRepository: Repository<FriendMessage>;
-
+    private readonly friendMessageRepository: Repository<FriendMessage>,
+  ) {
+    this.defaultGroup = 'Nest实时通信';
+  }
     @WebSocketServer()
-    public server: Server;
+    server: Server;
 
     /**
      * 默认群
      */
     defaultGroup = 'Nest实时通信';
     // socket 连接钩子
-    public async handleConnection(client: Socket): Promise<string> {
+    async handleConnection(client: Socket): Promise<string> {
         const userRoom = client.handshake.query['userId'];
         // 默认进入聊天室
         client.join(this.defaultGroup);
