@@ -76,6 +76,7 @@ export class NestChatFoamal {
         const isUser = await this.userRepository.findOne({
             userId: data.userId
         });
+        console.log('isUser', isUser, data.userId);
         if (isUser) {
             const isHaveGroup = await this.groupRepository.findOne({
                 groupName: data.groupName
@@ -97,6 +98,7 @@ export class NestChatFoamal {
             data = await this.groupRepository.save(data);
             client.join(data.groupId);
             const group = await this.groupUserRepository.save(data);
+            console.log('123123123123123');
             this.server.to(group.groupId).emit(
                 'addGroup', 
                 { 
