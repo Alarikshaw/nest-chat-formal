@@ -16,8 +16,8 @@ import { ChatModule } from './modules/chat/chat.module';
       type: 'mysql',
       port: 3306,
       username: 'root',
-      password: '123456',
-      database: 'chat4',
+      password: '111',
+      database: 'chat2',
       charset: "utf8mb4", // 设置chatset编码为utf8mb4
       autoLoadEntities: true,
       synchronize: true
