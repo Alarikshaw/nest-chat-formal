@@ -20,7 +20,6 @@ export class AuthController {
     @Post('/register')
     @ApiOperation({ summary: '注册' })
     async register(@Request() req) {
-        console.error('req', req);
         return this.authService.register(req.user);
     }
 }
